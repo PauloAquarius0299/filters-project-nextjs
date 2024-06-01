@@ -12,6 +12,8 @@ import Product from '@/components/Products/Product'
 import ProductSkeleton from '@/components/Products/ProductSkeleton'
 import { Accordion,  AccordionItem, AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion';
 import { Slider } from '@/components/ui/slider'
+import debounce from 'lodash.debounce'
+import EmptyState from '@/components/Products/EmptyState'
 
 const SORT_OPTIONS = [
   {name: 'Nenhum', value: 'none'},
@@ -94,7 +96,8 @@ export default function Home() {
 
   const onSubmit  = () => refetch()
 
- 
+  const debouncedSubmit = debounce(onSubmit, 400)
+  const _debouncedSubmit = useCallback(debouncedSubmit, [])
 
   const applyArrayFilter = ({
     category,
@@ -116,6 +119,8 @@ export default function Home() {
         [category]: [...prev[category], value],
       }))
     }
+    _debouncedSubmit()
+    
   }
 
   const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
@@ -147,6 +152,7 @@ export default function Home() {
                     ...prev,
                     sort:option.value,
                   }))
+                  _debouncedSubmit()
                 }} >
                   {option.name}
                 </button>
@@ -263,6 +269,7 @@ export default function Home() {
                             },
                           }))
                          
+                          _debouncedSubmit()
                         }}
                         checked={
                           !filter.price.isCustom &&
@@ -294,7 +301,7 @@ export default function Home() {
                             },
                           }))
 
-                          
+                          _debouncedSubmit()
                         }}
 
                         checked={filter.price.isCustom}
@@ -337,6 +344,8 @@ export default function Home() {
                             range: [newMin, newMax],
                           },
                         }))
+
+                        _debouncedSubmit()
                       }}
                       value={
                         filter.price.isCustom
@@ -357,13 +366,15 @@ export default function Home() {
           </div>
 
           <ul className='lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
-            {products 
-            ? products.map((product) => (
-              <Product product={product.metadata!} />
-            ))
-          : new Array(12)
-          .fill(null)
-          .map((_, i) => <ProductSkeleton key={i} />)}
+          {products && products.length === 0 ? (
+              <EmptyState />
+            ) : products ? (
+              products.map((product) => <Product product={product.metadata!} />)
+            ) : (
+              new Array(12)
+                .fill(null)
+                .map((_, i) => <ProductSkeleton key={i} />)
+            )}
           </ul>
         </div>
       </section>
