@@ -1,3 +1,21 @@
+![Captura de Tela (225)](https://github.com/PauloAquarius0299/filters-project-nextjs/assets/114706743/a7309fca-456a-4b95-a5fa-523ef97e6139)
+# Project Filters
+Projeto frontend utilizando Next, TypeScript, React e Tailwindcss
+## Introduçao 
+O projeto consiste em criar uma interface interativa com os checkbox ao lado direito, criando filtros entre cor, tamanho e preço das camisetas (ou qualquer tipo de peça de roupa) para interface ecommerce. O software foi estilizado com tailwind css utilizando a biblioteca do shadcn-ui para falicitar o layout. Utilizando o Nextjs e React como framework de criação desse software frontend utilizando suas funcionalidade com TypeScript, uma linguagem de tipagem estatica.
+### Pre-Requisitos
+* React com Nextjs
+* TypeScript
+* Tailwind
+* shadcn-ui
+* upstash (database)
+### Ferramentas 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
